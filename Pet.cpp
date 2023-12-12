@@ -8,6 +8,10 @@
 #define PASSWORD_LENGTH 10
 #define CPF_LENGTH 11
 
+void mainMenu();
+void menuFuncionario();
+void fazerLogin();
+
 typedef struct {
     char name[50];
     int age;
@@ -163,16 +167,100 @@ void cadastrarFuncionario() {
     printf("Funcionário cadastrado com sucesso!\n");
 }
 
-void telaDeLogin(){
+void menuFuncionario(){
+	int choice;
+    int c; // Variável para limpar o buffer de entrada
+
+	system("cls");
+    do {
+        printf("\n=== MENU DO FUNCIONÁRIO ===\n");
+        printf("1. Cadastro do Pet\n");
+        printf("2. Cadastro do Tutor\n");
+        printf("3. Prontuário do Pet\n");
+        printf("4. Deslogar\n");
+        printf("Escolha uma opção: ");
+
+        if (scanf("%d", &choice) != 1) {
+            printf("Entrada inválida. Tente novamente.\n");
+            system("pause");
+            // Limpa o buffer de entrada
+            while ((c = getchar()) != '\n' && c != EOF);
+            system("cls");
+            continue; // Retorna ao início do loop para solicitar uma nova entrada
+        }
+        
+        switch (choice) {
+            case 1:
+                 system("cls");
+                 //cadastro do pet
+                break;
+            case 2:
+            	 system("cls");
+                 //cadastro do tutor
+                break;
+            case 3:
+            	//prontuário
+            	break;
+            case 4:                 
+                printf("Deslogando...\n");
+                system("cls");
+				mainMenu();              
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (choice != 4);
+}
+
+int validarLogin(const char *inputCPF, const char *inputPassword) {
+    FILE *file = fopen("funcionarios.txt", "r");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 0;
+    }
+
+    Employee employee;
+    int loginSuccess = 0;
+
+    //while (fscanf(file, " Nome: %49s Idade: %d Endereço: %99s Email: %49s CPF: %11s Telefone: %d Cargo: %49s Salário: %lf Senha: %10s",
+    //O == 9 é pra confirmar que foi feita aleitura de todos os 9 elementos
+	while (fscanf(file, "Nome: %49s\nIdade: %d\nEndereço: %99s\nEmail: %49s\nCPF: %s\nTelefone: %d\nCargo: %49s\nSalário: %lf\nSenha: %s\n\n\n\n",
+                  employee.people.name, &employee.people.age, employee.people.address, employee.people.email, employee.people.cpf,
+                  &employee.people.phoneNumber, employee.role, &employee.salary, employee.password) == 9) {
+
+		//a função strcmp compara duas strng e retorna 0 quando são identicas
+        if (strcmp(employee.people.cpf, inputCPF) == 0 && strcmp(employee.password, inputPassword) == 0) {
+            loginSuccess = 1;
+            break;
+        } 
+    }
+
+    fclose(file);
+	return loginSuccess;
+}
+
+void fazerLogin(){
      
-     char password[PASSWORD_LENGTH + 1];
-     char cpf[CPF_LENGTH + 1];
+    char password[PASSWORD_LENGTH + 1];
+    char cpf[CPF_LENGTH + 1];
+    //int resultadoLogin;
      
-     printf("Digite seu CPF: ");
-     scanf("%s", cpf);
-     printf("Digite sua senha: ");
-     scanf("%s", password);
-     }
+    printf("Digite seu CPF: ");
+    scanf("%s", cpf);
+         
+    printf("Digite sua senha: ");
+    scanf("%s", password);
+    
+    int resultadoLogin = validarLogin(cpf, password);
+    
+    if (resultadoLogin) {
+        printf("Login bem-sucedido!\n");
+        menuFuncionario();
+    } else {
+        printf("CPF ou senha incorretos. Tente novamente.\n");
+    }
+
+}
 
 void mainMenu() {
     int choice;
@@ -196,9 +284,11 @@ void mainMenu() {
         
         switch (choice) {
             case 1:
+                 system("cls");
+                 fazerLogin();
                 break;
             case 2:
-            	system("cls");
+            	 system("cls");
                  cadastrarFuncionario();
                 break;
             case 3:                 
