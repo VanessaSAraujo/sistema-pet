@@ -1,0 +1,8 @@
+Nome: b
+Idade: 2
+Raça: s
+ID do Tutor: 1
+Nome: a
+Idade: 2
+Raça: s
+ID do Tutor: 2
