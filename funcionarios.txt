@@ -7,3 +7,12 @@ Telefone: 12451345
 Cargo: hcdcbd 
 Salário: 12.00 
 Senha: 5216
+Nome: Tamires 
+Idade: 26  
+Endereço: Rua  Papa 
+Email: tamires.fonseca@hotmail.com 
+CPF: 05433634574 
+Telefone: -1326367624 
+Cargo: Enfermeiro 
+Salário: 1000000.00 
+Senha: 5216

@@ -1,8 +1,16 @@
-Nome: b
-Idade: 2
-Raça: s
-ID do Tutor: 1
-Nome: a
-Idade: 2
-Raça: s
+Nome: Pretinha
+Idade: 3
+Raça: SRD
 ID do Tutor: 2
+Nome: Antipatica
+Idade: 1
+Raça: Siames
+ID do Tutor: 2
+Nome: Antipatica
+Idade: 1
+Raça: Siames
+ID do Tutor: 2Nome: Scooby
+Idade: 10
+Raça: SRD
+ID do Tutor: 2
+Espécie: Cachorro
